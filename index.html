@@ -9,20 +9,20 @@
 <body>
     <!--Responsive Navbar-->
     <nav id="navbar">
-        <header>Vue.js</header>
+        <header id="header">Vue.js</header>
         <ul>
-            <li><a href="" class="nav-link"></a></li>
-            <li><a href="" class="nav-link"></a></li>
-            <li><a href="" class="nav-link"></a></li>
-            <li><a href="" class="nav-link"></a></li>
-            <li><a href="" class="nav-link"></a></li>
+            <li><a href="#What_is_Vue.js?" class="nav-link">What is Vue.js?</a></li>
+            <li><a href="#Getting_Started" class="nav-link">Getting Started</a></li>
+            <li><a href="#Declarative_Rendering" class="nav-link">Declarative Rendering</a></li>
+            <li><a href="#Conditionals_and_Loops" class="nav-link">Conditionals and Loops</a></li>
+            <li><a href="#Handling_User_Input" class="nav-link">Handling User Input</a></li>
         </ul>
     </nav>
     
     <!--Copied from the Vue.js official documentation at https://vuejs.org/v2/guide/-->
     <!--Main content of the page-->
     <main id="main-doc">
-        <section class="main-section">
+        <section class="main-section"  id="What_is_Vue.js?">
             <header>What is Vue.js?</header>
             <p>Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
 
@@ -31,17 +31,98 @@
                 If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks.</p>
             <code></code>
         </section>
-        <section class="main-section">
-            <header></header>
+        <section class="main-section" id="Getting_Started">
+            <header>Getting Started</header>
+            <p>The easiest way to try out Vue.js is using the Hello World example. Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can create an index.html file and include Vue with:</p>
+            <code>&ltscript src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script></code>
+            <p>If you prefer something more interactive, you can also check out this tutorial series on <a href="https://scrimba.com/learn/vuedocs" target="_blank">Scrimba</a>, which gives you a mix of screencast and code playground that you can pause and play around with anytime.</p>
         </section>
-        <section class="main-section">
-            <header></header>
+        <section class="main-section" id="Declarative_Rendering">
+            <header>Declarative Rendering</header>
+            <p>At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:</p>
+            <code>&ltdiv id="app"> <br>
+                &nbsp&nbsp   {{ message }}  <br>
+              &lt/div></code> <br>
+              <code>var app = new Vue({ <br>
+                &nbsp el: '#app', <br>
+                &nbsp data: { <br>
+                    &nbsp&nbsp message: 'Hello Vue!' <br>
+                &nbsp } <br>
+              })</code>
+              <p>We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now reactive.</p>
+              <p>Note that we no longer have to interact with the HTML directly. A Vue app attaches itself to a single DOM element (#app in our case) then fully controls it. The HTML is our entry point, but everything else happens within the newly created Vue instance.</p>
+              <p>In addition to text interpolation, we can also bind element attributes like this:</p>
+              <code>
+                &lt;div id="app-2"> <br>
+                    &nbsp;&lt;span v-bind:title="message"> <br>
+                    &nbsp;&nbsp;Hover your mouse over me for a few seconds <br>
+                    &nbsp;&nbsp;to see my dynamically bound title! <br>
+                    &nbsp;&lt;/span> <br>
+                  &lt;/div> <br>
+              </code>
+              <code>
+                var app2 = new Vue({ <br>
+                    &nbsp;el: '#app-2', <br>
+                    &nbsp;data: { <br>
+                        &nbsp;&nbsp;message: 'You loaded this page on ' + new Date().toLocaleString() <br>
+                    &nbsp;} <br>
+                  }) <br>
+              </code>
+              <p>Here we are encountering something new. The v-bind attribute you are seeing is called a directive. Directives are prefixed with v- to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying “keep this element’s title attribute up-to-date with the message property on the Vue instance.”</p>
         </section>
-        <section class="main-section">
-            <header></header>
+        <section class="main-section" id="Conditionals_and_Loops">
+            <header >Conditionals and Loops</header>
+            <p>It’s easy to toggle the presence of an element, too:</p>
+            <code>
+                &lt;div id="app-3"> <br>
+                    &nbsp;&lt;span v-if="seen">Now you see me</span> <br>
+                &lt;/div> <br>
+            </code>
+            <code>
+                var app3 = new Vue({ <br>
+                    &nbsp;&nbsp;el: '#app-3', <br>
+                    &nbsp;&nbsp;data: { <br>
+                        &nbsp;&nbsp;&nbsp;seen: true <br>
+                        &nbsp;&nbsp;} <br>
+                  }) <br>
+            </code>
+            <p>This example demonstrates that we can bind data to not only text and attributes, but also the structure of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/updated/removed by Vue.</p>
+            <p>There are quite a few other directives, each with its own special functionality. For example, the v-for directive can be used for displaying a list of items using the data from an Array:</p>
+            <code>
+                &lt;div id="app-4"> <br>
+                   &nbsp;&lt;ol> <br>
+                        &nbsp;&nbsp;&lt;li v-for="todo in todos"> <br>
+                            &nbsp;&nbsp;&nbsp;{{ todo.text }} <br>
+                        &nbsp;&nbsp;&lt;/li> <br>
+                    &nbsp;&lt;/ol> <br>
+                  &lt;/div> <br>
+            </code>
+            <code>
+                var app4 = new Vue({ <br>
+                    &nbsp;el: '#app-4', <br>
+                    &nbsp;data: { <br>
+                        &nbsp;&nbsp;todos: [ <br>
+                        &nbsp;&nbsp;&nbsp;{ text: 'Learn JavaScript' }, <br>
+                        &nbsp;&nbsp;&nbsp;{ text: 'Learn Vue' }, <br>
+                        &nbsp;&nbsp;&nbsp;{ text: 'Build something awesome' } <br>
+                        &nbsp;&nbsp;&nbsp;{ text: 'Innovate' } <br>
+                        &nbsp;&nbsp;&nbsp;{ text: 'Achieve world peace' } <br>
+                        &nbsp;&nbsp;] <br>
+                        &nbsp;} <br>
+                  }) <br>
+            </code>
+            <div class="output"> 
+                <ol>
+                    <li>Learn JavaScript</li>
+                    <li>Learn Vue</li>
+                    <li>Build something awesome</li>
+                    <li>Innovate</li>
+                    <li>Achieve world peace</li>
+                </ol>
+            </div>
         </section>
-        <section class="main-section">
-            <header></header>
+        <section class="main-section"  id="Handling_User_Input">
+            <header>Handling User Input</header>
         </section>
     </main>
 
