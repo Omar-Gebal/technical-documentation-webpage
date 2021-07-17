@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -11,11 +15,11 @@
     <nav id="navbar">
         <header id="header">Vue.js</header>
         <ul>
-            <li><a href="#What_is_Vue.js?" class="nav-link">What is Vue.js?</a></li>
-            <li><a href="#Getting_Started" class="nav-link">Getting Started</a></li>
-            <li><a href="#Declarative_Rendering" class="nav-link">Declarative Rendering</a></li>
-            <li><a href="#Conditionals_and_Loops" class="nav-link">Conditionals and Loops</a></li>
-            <li><a href="#Handling_User_Input" class="nav-link">Handling User Input</a></li>
+            <li class ="nav-elements" id = "first-nav"><a href="#What_is_Vue.js?" class="nav-link">What is Vue.js?</a></li>
+            <li class ="nav-elements"><a href="#Getting_Started" class="nav-link">Getting Started</a></li>
+            <li class ="nav-elements"><a href="#Declarative_Rendering" class="nav-link">Declarative Rendering</a></li>
+            <li class ="nav-elements"><a href="#Conditionals_and_Loops" class="nav-link">Conditionals and Loops</a></li>
+            <li class ="nav-elements"><a href="#Handling_User_Input" class="nav-link">Handling User Input</a></li>
         </ul>
     </nav>
     
@@ -29,12 +33,11 @@
                 If you’d like to learn more about Vue before diving in, we created a video walking through the core principles and a sample project.
                 
                 If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks.</p>
-            <code></code>
         </section>
         <section class="main-section" id="Getting_Started">
             <header>Getting Started</header>
             <p>The easiest way to try out Vue.js is using the Hello World example. Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can create an index.html file and include Vue with:</p>
-            <code>&ltscript src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script></code>
+            <code id="weirdo">&ltscript src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script></code>
             <p>If you prefer something more interactive, you can also check out this tutorial series on <a href="https://scrimba.com/learn/vuedocs" target="_blank">Scrimba</a>, which gives you a mix of screencast and code playground that you can pause and play around with anytime.</p>
         </section>
         <section class="main-section" id="Declarative_Rendering">
@@ -123,8 +126,47 @@
         </section>
         <section class="main-section"  id="Handling_User_Input">
             <header>Handling User Input</header>
+            <p>To let users interact with your app, we can use the v-on directive to attach event listeners that invoke methods on our Vue instances:</p>
+            <code>
+                &lt;div id="app-5"> <br>
+                    &nbsp;&lt;p>{{ message }}&lt/p> <br>
+                    &nbsp;&lt;button v-on:click="reverseMessage">Reverse Message&lt/button> <br>
+                &lt;/div> <br>
+            </code>
+            <code>
+                var app5 = new Vue({ <br>
+                    &nbsp;el: '#app-5', <br>
+                    &nbsp;data: { <br>
+                        &nbsp;&nbsp;message: 'Hello Vue.js!' <br>
+                    &nbsp;}, <br>
+                    &nbsp;methods: { <br> 
+                        &nbsp;&nbsp;reverseMessage: function () { <br>
+                            &nbsp;&nbsp;&nbsp;this.message = this.message.split('').reverse().join('') <br>
+                            &nbsp;&nbsp;} <br>
+                            &nbsp;} <br>
+                  }) <br>
+            </code>
+            <p>
+                Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+            </p>
+            <p>
+                Vue also provides the v-model directive that makes two-way binding between form input and app state a breeze:
+            </p>
+            <code>
+                &lt;div id="app-6"> <br>
+                    &nbsp;&lt;p>{{ message }}&lt;/p> <br>
+                    &nbsp;&lt;input v-model="message"> <br>
+                    &lt;/div> <br>
+            </code>
+            <code>
+                var app6 = new Vue({ <br>
+                    &nbsp;el: '#app-6', <br>
+                    &nbsp;data: { <br>
+                        &nbsp;&nbsp;message: 'Hello Vue!' <br>
+                        &nbsp;} <br>
+                  }) <br>
+            </code>
         </section>
     </main>
-
 </body>
 </html>

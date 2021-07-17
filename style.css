@@ -1,0 +1,124 @@
+:root {
+    --paragraphs-color: #304455;
+    --code-color: rgb(83, 83, 83);
+    --code-hover:black;
+    --code-bg: rgb(243, 243, 243);
+    --code-bg-hover: rgb(231, 231, 231);
+    --teritary-color: rgb(74, 145, 106);
+  }
+
+
+*{
+    color: var(--paragraphs-color);
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+nav {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    border-right: 3px solid var(--teritary-color);
+}
+main {
+    position: absolute;
+    margin-left: 260px;
+    padding: 0px;
+    margin-bottom: 110px;
+}
+ 
+header
+{
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 20px;
+}
+
+p
+{
+    margin: 20px; 
+}
+
+.nav-elements{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 2rem;
+    border-bottom: 1px solid var(--teritary-color);
+}
+
+#first-nav {
+    border-top: 1px solid var(--teritary-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+code
+{
+    padding: 10px;
+    width: auto;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--code-bg);
+    display: block;
+    color: var(--code-color);
+}
+.output{
+    padding: 40px;
+    width: auto;
+    margin: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--teritary-color);
+    display: block;
+    color: var(--code-hover);
+}
+
+
+/* Animations */
+code:hover {
+    background-color: var(--code-bg-hover);
+    color: var(--code-hover);
+}
+
+@media only screen and (max-width: 1200px){
+    nav {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        border-right: 3px solid var(--teritary-color);
+    }
+    main {
+        position: absolute;
+        margin-left: 210px;
+
+    }
+}
+@media only screen and (max-width: 600px){
+    nav > header {
+        text-align: center;
+    }
+    .nav-elements{
+        justify-content: center;
+    }
+    nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: 0px solid var(--teritary-color);
+    }
+    main {
+        position: static;
+        margin-left: 0px;
+    }
+}
+@media only screen and (max-width: 520px){
+	#weirdo{
+        font-size: 0.7rem;
+    }
+    
+}
